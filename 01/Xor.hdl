@@ -14,8 +14,21 @@ CHIP Xor {
 
     PARTS:
     // Put your code here:
-    Nand(a=a, b=b, out=anandb);
-    Nand(a=a, b=anandb, out=aAndanandb);
-    Nand(a=anandb, b=b, out=anandAndb);
-    Nand(a=aAndanandb, b=anandAndb, out=out);
+
+    // Method for solving XOR using only NAND gate.
+
+    /*
+	    Nand(a=a, b=b, out=anandb);
+	    Nand(a=a, b=anandb, out=aAndanandb);
+	    Nand(a=anandb, b=b, out=anandAndb);
+	    Nand(a=aAndanandb, b=anandAndb, out=out);
+    */
+
+    // Another method for solving XOR using NOT, and NAND.
+
+    Not(in=b, out=notb);
+    Not(in=a, out=nota);
+    Nand(a=nota, b=b, out=notaAndb);
+    Nand(a=a, b=notb, out=aAndnotb);
+    Nand(a=notaAndb, b=aAndnotb, out=out);
 }
