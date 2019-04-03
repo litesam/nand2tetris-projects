@@ -2,4 +2,4 @@
 
 01:
  Completed:
- 	And, Not, Or, Xor
+ 	And, Not, Or, Xor, Mux
