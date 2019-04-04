@@ -2,4 +2,4 @@
 
 01:
  Completed:
- 	And, Not, Or, Xor, Mux, Dmux, And16, Not16
+ 	And, Not, Or, Xor, Mux, Dmux, And16, Not16, Or16, Dmux4way
