@@ -11,10 +11,36 @@
  *                            {0, 0, 0, 0, 0, 0, 0, in} if sel == 111
  */
 
+ // Pins values go like this: in-sel[2]-sel[1]-sel[0]
+
 CHIP DMux8Way {
     IN in, sel[3];
     OUT a, b, c, d, e, f, g, h;
 
     PARTS:
     // Put your code here:
+    Not(in=sel[0], out=notsel0);
+    Not(in=sel[1], out=notsel1);
+    Not(in=sel[2], out=notsel2);
+    And(a=notsel0, b=notsel1, out=notsel0Andnotsel1);
+    And(a=notsel0Andnotsel1, b=notsel2, out=sela);
+    And(a=in, b=sela, out=a); // 1000
+    And(a=sel[0], b=notsel1, out=sel0Andnotsel1);
+    And(a=sel0Andnotsel1, b=notsel2, out=selb);
+    And(a=selb, b=in, out=b); // 1001
+    And(a=notsel0, b=sel[1], out=notsel0Andsel1);
+    And(a=notsel0Andsel1, b=notsel2, out=selc);
+    And(a=selc, b=in, out=c); // 1010
+    And(a=sel[0], b=sel[1], out=sel0Andsel1);
+    And(a=sel0Andsel1, b=notsel2, out=seld);
+    And(a=seld, b=in, out=d); // 1011
+    And(a=notsel0Andnotsel1, b=sel[2], out=sele);
+    And(a=sele, b=in, out=e); // 1100
+    And(a=sel0Andnotsel1, b=sel[2], out=self);
+    And(a=self, b=in, out=f); // 1101
+    And(a=sel[1], b=sel[2], out=sel1Andsel2);
+    And(a=sel1Andsel2, b=notsel0, out=selg);
+    And(a=selg, b=in, out=g); // 1110
+    And(a=sel1Andsel2, b=sel[0], out=selh);
+    And(a=in, b=selh, out=h); // 1111
 }
