@@ -19,6 +19,9 @@ CHIP Mux8Way16 {
 
     PARTS:
     // Put your code here:
+    // All the inputs are Multiplexed first, with 0th pin selected
+    // Then those inputs are Multiplexed with 1st pin selected
+    // Then to get the result we Multiplex the output from the previous step to 2nd pin selected
     Mux16(a=a, b=b, sel=sel[0], out=outab);
     Mux16(a=c, b=d, sel=sel[0], out=outcd);
     Mux16(a=e, b=f, sel=sel[0], out=outef);
