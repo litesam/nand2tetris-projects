@@ -6,4 +6,6 @@
 
  02:
   Completed:
-  	Halfadder, Fulladder, Add16
+  	Halfadder, Fulladder, Add16, Inc16, ALU
+  Added:
+  	Or16Way -> so that setting zr flag becomes easy!!

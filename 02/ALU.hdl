@@ -42,5 +42,31 @@ CHIP ALU {
         ng; // 1 if (out < 0),  0 otherwise
 
     PARTS:
-   // Put you code here:
+    // Put you code here:
+    // if (zx==1) set x = 0x else x = x
+    Mux16(a=x, b=false, sel=zx, out=zxout);
+
+    // if (zy==1) set y = 0y else y = y
+    Mux16(a=y, b=false, sel=zy, out=zyout);
+
+    // if ((nx==1) && (zx==1)) set x = !0x else set x = 0x
+    // if ((ny==1) && (zy==1)) set y = !0y else set y = 0y
+    Not16(in=zxout, out=notx);
+    Not16(in=zyout, out=noty);
+    Mux16(a=zxout, b=notx, sel=nx, out=nxout);
+    Mux16(a=zyout, b=noty, sel=ny, out=nyout);
+
+    // if (f == 1) set f =  x + y else set f = x & y
+    Add16(a=nxout, b=nyout, out=fAddout);
+    And16(a=nxout, b=nyout, out=fAndout);
+    Mux16(a=fAndout, b=fAddout, sel=f, out=fout);
+
+    // if (no == 1) set ouput = !output else set output = output
+    Not16(in=fout, out=nfout);
+    Mux16(a=fout, b=nfout, sel=no, out=out, out=zr1, out[15]=ng);
+
+    // only to set of the flags!!!!
+    // TODO: Fix Or16Way.hdl file to use Or8Way
+    Or16Way(in=zr1, out=setzr);
+    Not(in=setzr, out=zr);
 }
