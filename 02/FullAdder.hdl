@@ -14,4 +14,11 @@ CHIP FullAdder {
 
     PARTS:
     // Put you code here:
+    Xor(a=a, b=b, out=aXorb);
+    Xor(a=aXorb, b=c, out=sum);
+    And(a=a, b=b, out=aAndb);
+    And(a=a, b=c, out=aAndc);
+    And(a=b, b=c, out=bAndC);
+    Or(a=aAndb, b=aAndc, out=carryOutput);
+    Or(a=carryOutput, b=bAndC, out=carry);
 }

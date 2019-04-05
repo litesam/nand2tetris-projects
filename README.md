@@ -6,4 +6,4 @@
 
  02:
   Completed:
-  	Halfadder
+  	Halfadder, Fulladder, Add16
