@@ -9,3 +9,7 @@
   	Halfadder, Fulladder, Add16, Inc16, ALU
   Added:
   	Or16Way -> so that setting zr flag becomes easy!!
+
+03:
+ Completed:
+ 	Bit, Register
