@@ -12,4 +12,4 @@
 
 03:
  Completed:
- 	Bit, Register
+ 	Bit, Register, RAM8
