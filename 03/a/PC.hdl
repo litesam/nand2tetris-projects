@@ -17,4 +17,12 @@ CHIP PC {
 
     PARTS:
     // Put your code here:
+    // if (inc == 1) set increOut = in + 1 else set increOut = increOut
+    // if (load == 1) set regOut = previousOut else regOut = regOut
+    // if (reset == 1) set out = 0 else set out = 1
+    Inc16(in=regisOut, out=increOut);
+    Mux16(a=regisOut, b=increOut, sel=inc, out=regincOut);
+    Mux16(a=regincOut, b=in, sel=load, out=incOut);
+    Mux16(a=incOut, b=false, sel=reset, out=resetOut);
+    Register(in=resetOut, load=true, out=regisOut, out=out);
 }
